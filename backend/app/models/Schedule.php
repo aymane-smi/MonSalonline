@@ -45,6 +45,17 @@
         $this->db->bind(":hour", $hour);
         $this->db->bind(":id", $id);
         $this->db->execute();
-        } 
+        }
+
+        /**
+         * get all appointment of a client
+         * @param mixed $id
+         * @return array
+         */
+        public function all($id){
+        $this->db->query("SELECT * FROM appointment WHERE id_client = :id");
+        $this->db->bind(":id", $id);
+        return $this->db->resultSet();
+        }
     }
 ?>
