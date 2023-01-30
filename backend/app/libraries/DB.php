@@ -3,7 +3,7 @@ class DB
 {
     private $USER = 'root';
     private $PASSWORD = '123@Password';
-    private $DB = 'glowguru';
+    private $DB = 'monsalonline';
     private $PORT = 3306;
     private $HOST = 'db';
 
