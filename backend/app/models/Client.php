@@ -41,5 +41,15 @@
             $this->db->bind(":id", $id);
             $this->db->execute();
         }
+
+        public function edit($fname, $lname, $email, $phone, $id){
+            $this->db->query("UPDATE client SET fname = :fname, lname = :lname, email = :email, phone = :phone WHERE id = :id");
+            $this->db->bind(":fname", $fname);
+            $this->db->bind(":lname", $lname);
+            $this->db->bind(":email", $email);
+            $this->db->bind(":phone", $phone);
+            $this->db->bind(":id", $id);
+            $this->db->execute();
+        }
     }
 ?>

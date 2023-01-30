@@ -29,5 +29,29 @@
                 "token" => $token,
             ]);
         }
+
+        public function editToken(){
+            $this->header->init("PUT");
+            $data = json_decode(file_get_contents("php://input"));
+            $token = $this->utilities->randomStrGenerator();
+            $this->client->editToken($data->id, $token);
+            $this->header->status(202, "Accepted");
+            echo json_encode([
+                "message" => "token updated",
+                "token" => $token,
+            ]);
+        }
+
+
+        public function editClient(){
+            $this->header->init("PUT");
+            $data = json_decode(file_get_contents("php://input"));
+            $token = $this->utilities->randomStrGenerator();
+            $this->client->edit($data->fname, $data->lname, $data->email, $data->phone, $data->id);
+            $this->header->status(202, "Accepted");
+            echo json_encode([
+                "message" => "client updated",
+            ]);
+        }
     }
 ?>
