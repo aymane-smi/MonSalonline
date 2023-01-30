@@ -2,6 +2,7 @@
     class Api extends Controller{
         private $header;
         private $client;
+        private $appointment;
 
         private $utilities;
 
@@ -9,6 +10,7 @@
         $this->header = new headers();
         $this->client = $this->model("Client");
         $this->utilities = new Utilities();
+        $this->appointment = $this->model("Appointment");
         }
 
         public function index(){
@@ -51,6 +53,16 @@
             $this->header->status(202, "Accepted");
             echo json_encode([
                 "message" => "client updated",
+            ]);
+        }
+
+        public function addAppointement(){
+            $this->header->init("POST");
+            $data = json_decode(file_get_contents("php://input"));
+            $this->appointment->add($data->id, date("Y-m-d"), $data->hour);
+            $this->header->status(201, "Created");
+            echo json_encode([
+                "message" => "appointment created for user with id:$data->id",
             ]);
         }
     }

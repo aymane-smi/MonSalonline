@@ -1,5 +1,5 @@
 <?php
-    class Schedule{
+    class Appointment{
         private $db;
 
         public function __construct(){
