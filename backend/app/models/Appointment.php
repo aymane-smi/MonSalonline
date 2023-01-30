@@ -14,7 +14,7 @@
          * @return void
          */
         public function add($id_client, $date, $hour){
-            $this->db->query("INSERT INTO appointment(id_client, date, hour) VALUE($id_client, $date, $hour)");
+            $this->db->query("INSERT INTO appointment(id_client, date, hour) VALUE(:id_client, :date, :hour)");
             $this->db->bind(":id_client", $id_client);
             $this->db->bind(":date", $date);
             $this->db->bind(":hour", $hour);

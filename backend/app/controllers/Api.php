@@ -56,13 +56,42 @@
             ]);
         }
 
-        public function addAppointement(){
+        public function addAppointment(){
             $this->header->init("POST");
             $data = json_decode(file_get_contents("php://input"));
             $this->appointment->add($data->id, date("Y-m-d"), $data->hour);
             $this->header->status(201, "Created");
             echo json_encode([
                 "message" => "appointment created for user with id:$data->id",
+            ]);
+        }
+
+        public function editAppointment(){
+            $this->header->init("PUT");
+            $data = json_decode(file_get_contents("php://input"));
+            $this->appointment->edit($data->id, $data->date, $data->hour);
+            $this->header->status(202, "Accepted");
+            echo json_encode([
+                "message" => "appointment with id:$data->id was updated!",
+            ]);
+        }
+
+        public function delete($id){
+            $this->header->init("DELETE");
+            $this->appointment->deleteById($id);
+            $this->header->status(200, "OK");
+            echo json_encode([
+                "message" => "appointment with id:$id was deleted!",
+            ]);
+        }
+
+        public function all($id){
+            $this->header->init("GET");
+            $result = $this->appointment->all($id);
+            $this->header->status(200, "OK");
+            echo json_encode([
+                "message" => "all appointment for client(id:$id)!",
+                "appointments" => ($result),
             ]);
         }
     }
