@@ -1,14 +1,21 @@
 <?php
     class Api extends Controller{
-    private $header;
+        private $header;
+
         public function __construct(){
         $this->header = new headers();
         }
+
         public function index(){
         $this->header->init("GET");
         echo json_encode([
             "message" => "hello",
         ]);
+        }
+
+        public function createClient(){
+        $this->header->init("POST");
+        
         }
     }
 ?>
