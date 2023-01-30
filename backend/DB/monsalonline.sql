@@ -5,15 +5,16 @@ CREATE DATABASE monsalonline;
 USE monsalonline;
 
 CREATE TABLE client(
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     fname VARCHAR(30) NOT NULL,
     lname VARCHAR(30) NOT NULL,
-    email VARCHAR(50) NOT NULL,
-    phone VARCHAR(10) NOT NULL
+    email VARCHAR(50) NOT NULL UNIQUE,
+    phone VARCHAR(10) NOT NULL UNIQUE,
+    token VARCHAR(8) NOT NULL UNIQUE
 );
 
 CREATE TABLE appointment(
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     date DATE NOT NULL,
     hour VARCHAR(5) NOT NULL,
     id_client INT NOT NULL,

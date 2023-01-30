@@ -17,7 +17,7 @@
            * @return void
            */
 
-        public function addClient($fname, $lname, $email, $phone, $token){
+        public function add($fname, $lname, $email, $phone, $token){
             $this->db->query("INSERT INTO client(fname, lname, email, phone, token) VALUES(:fname, :lname, :email, :phone, :token)");
             $this->db->bind(":fname", $fname);
             $this->db->bind(":lname", $lname);
