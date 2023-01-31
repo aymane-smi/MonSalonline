@@ -1,8 +1,8 @@
 <template>
-    <nav class="font-tako mt-3 border-t-[4px] border-white mx-6 text-white pt-6 px-3 flex justify-between items-center">
+    <nav class="font-tako border-t-[4px] border-white mx-6 text-white pt-6 px-3 flex justify-between items-center">
        <div class="flex flex-col text-[20px]">
-            <a href="/">Home</a>
-            <a href="/login">Login</a>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/login">Login</RouterLink>
        </div>
        <p class="text-[30px]">MonSalonLine</p>
        <div class="font-thin">
@@ -18,11 +18,13 @@
         </div>
 
         <div class="flex pl-[200px] gap-5 font-semibold font-tako">
-            <a class="bg-[#efefef] rounded-[20px] p-4 text-black">make an appointment</a>
-            <a class="border-[#efefef] border-[2px] rounded-[20px] p-4 text-[#efefef]">signup</a>
+            <router-link to="/create" class="bg-[#efefef] rounded-[20px] p-4 text-black">make an appointment</router-link>
+            <router-link to="/signup" class="border-[#efefef] border-[2px] rounded-[20px] p-4 text-[#efefef]">signup</router-link>
         </div>
     </main>
 </template>
-<script setup>
+<script setup lang="ts">
+document.body.classList.add("bg-edit");
+document.body.classList.add("pt-3");
 </script>
 <style scoped></style>
