@@ -5,9 +5,9 @@
         <div class="grid grid-cols-7 grid-rows-4 mt-2">
             <!-- v-bind:class <=> :class -->
             <span v-for="n in days" :class="{
-                'bg-[#1a73e8] text-white shadow-lg': n===date.getDate(),
+                'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate(),
                 'text-gray-400 cursor-not-allowed': n < date.getDate(),
-                'cursor-pointer': n >= date.getDate(),
+                'hover:bg-gray-300 cursor-pointer': n > date.getDate(),
                 }"
             class="text-[12px] text-balck p-3 mt-2 text-center gap-20 flex justify-center items-center rounded-[50%] h-[6px] w-[6px]">
                 {{ n }}

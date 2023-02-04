@@ -7,7 +7,7 @@ export const routes:Array<RouteRecordRaw> = [
     },{
         path: "/login",
         name: "login",
-        component: ()=>import("../views/Login.vue"),
+        component: ()=>import("../views/Register.vue"),
     },
     {
         path: "/calendar",

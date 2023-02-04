@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     fontFamily:{
       'tako': "Teko",
+      'poppins': "Poppins"
     },
     extend: {},
   },

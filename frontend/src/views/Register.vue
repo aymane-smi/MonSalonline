@@ -1,0 +1,37 @@
+<template>
+    <div class="w-screen h-screen blur_ flex justify-center items-center">
+        <form class="rounded-md p-7 bg-white h-[400px] overflow-y-scroll">
+            <p class="text-[25px] font-bold">Register</p>
+            <div class="flex flex-col gap-5 mt-3">
+                <label for="fname">First Name</label>
+                <input type="text" name="fname" id="fname" class="p-3 border rounded-md"/>
+            </div>
+            <div class="flex flex-col gap-5 mt-3">
+                <label for="lname">Last Name</label>
+                <input type="text" name="lname" id="lname" class="p-3 border rounded-md"/>
+            </div>
+            <div class="flex flex-col gap-5 mt-3">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" class="p-3 border rounded-md"/>
+            </div>
+            <div class="flex flex-col gap-5 mt-3">
+                <label for="phone">Phone</label>
+                <input type="phone" name="phone" id="phone" class="p-3 border rounded-md"/>
+            </div>
+            <div class="flex flex-col gap-5 mt-3">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="p-3 border rounded-md"/>
+            </div>
+            <button class="p-2 rounded-md bg-green-300 text-white mt-3">Register</button>
+        </form>
+    </div>
+</template>
+<script lang="ts" setup>
+
+document.body.classList.remove("pt-3");
+</script>
+<style scoped>
+    .blur_{
+        backdrop-filter: blur(10px);
+    }
+</style>
