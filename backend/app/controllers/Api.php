@@ -44,6 +44,15 @@
             ]);
         }
 
+        public function tokenAccess(){
+            $this->header->init("POST");
+            $data = json_decode(file_get_contents("php://input"));
+            if($this->client->verifyToken($data->token)){
+                $this->header->status(202, "Created");}
+            else
+                $this->header->status(401, "Unauthorized");
+        }
+
 
         public function editClient(){
             $this->header->init("PUT");

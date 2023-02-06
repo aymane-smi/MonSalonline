@@ -1,6 +1,5 @@
 <template>
-    <div class="w-screen h-screen blur_ flex justify-center items-center">
-        <form class="rounded-md p-7 bg-white h-[400px] overflow-y-scroll" @submit.prevent="handleSubmit">
+    <form class="rounded-md p-7 bg-white h-[400px] overflow-y-scroll" >
             <p class="text-[25px] font-bold w-full text-center">Register</p>
             <div class="flex flex-col gap-2 mt-3">
                 <label for="fname">First Name</label>
@@ -24,19 +23,10 @@
             </div>
             <button class="p-2 rounded-md bg-green-300 text-white mt-3">Register</button>
         </form>
-    </div>
 </template>
 <script lang="ts" setup>
-
-import { reactive, toRefs } from 'vue';
-import { formInputs} from "../utils/types";
-import { routerKey, useRouter } from 'vue-router';
-
-const route = useRouter();
-
-document.body.classList.remove("pt-3");
-
-document.body.classList.add("bg-edit");
+import { reactive } from 'vue';
+import { formInputs } from "../utils/types";
 
 const inputs:formInputs = reactive({
     fname: "",
@@ -46,28 +36,6 @@ const inputs:formInputs = reactive({
     username: "",
 });
 
-const handleSubmit = async(e:Event)=>{
-    const formData = new FormData();
-    formData.append("fname", inputs.fname);
-    formData.append("lname", inputs.lname);
-    formData.append("email", inputs.email);
-    formData.append("phone", inputs.phone);
-    formData.append("username", inputs.username);
-    let body: { [k: string]: string; } = {};
-    formData.forEach((v, k)=>{
-        body[k]=v;
-    });
-    let res = await fetch("http://localhost:9000/api/createClient", {
-        method: "POST",
-        body: JSON.stringify(body),
-    });
-    const data = await res.json();
-    localStorage.setItem("token", data.token);
-    route.push("/Calendar");
-};
+
 </script>
-<style scoped>
-    .blur_{
-        backdrop-filter: blur(10px);
-    }
-</style>
+<style scoped></style>

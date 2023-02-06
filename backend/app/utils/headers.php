@@ -8,7 +8,7 @@
         }
 
         public function status($code, $message){
-            header("HTTP1.1 $code $message");
+            header("HTTP/1.1 $code $message");
         }
     }
 ?>

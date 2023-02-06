@@ -51,5 +51,17 @@
             $this->db->bind(":id", $id);
             $this->db->execute();
         }
+
+        public function verifyToken($token){
+            $this->db->query("SELECT * FROM client WHERE token LIKE ':token' ");
+            $this->db->bind(":token", $token);
+            $this->db->execute();
+            $row = $this->db->rowCount();
+            echo $row;
+            if ($row)
+                return true;
+            else
+                return false;
+        }
     }
 ?>

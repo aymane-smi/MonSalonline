@@ -5,13 +5,18 @@ export const routes:Array<RouteRecordRaw> = [
         name: "home",
         component: ()=>import("../views/Home.vue"),
     },{
-        path: "/login",
-        name: "login",
+        path: "/register",
+        name: "register",
         component: ()=>import("../views/Register.vue"),
     },
     {
         path: "/calendar",
         name: "calendar",
         component: ()=>import("../views/Calendar.vue"),
+    },
+    {
+        path: "/login",
+        name: "login",
+        component: ()=>import("../views/Login.vue"),
     }
 ];
