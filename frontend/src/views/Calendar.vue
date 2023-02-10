@@ -24,10 +24,10 @@
     document.body.classList.remove("bg-edit");
     document.body.classList.remove("pt-3");
     const switchScreen = (option:number)=>{
-        //store.changeScreen(option);
+        store.changeScreen(option);
     }
     const showTimes = ()=>{
-        //store.changeScreen(3);
+        store.changeScreen(3);
     }
 </script>
 <style scoped>
