@@ -18,8 +18,8 @@
         </div>
 
         <div class="flex pl-[200px] gap-5 font-semibold font-tako">
-            <router-link to="/create" class="bg-[#efefef] rounded-[20px] p-4 text-black">make an appointment</router-link>
-            <router-link to="/signup" class="border-[#efefef] border-[2px] rounded-[20px] p-4 text-[#efefef]">signup</router-link>
+            <router-link to="/calendar" class="bg-[#efefef] rounded-[20px] p-4 text-black">make an appointment</router-link>
+            <router-link to="/register" class="border-[#efefef] border-[2px] rounded-[20px] p-4 text-[#efefef]">signup</router-link>
         </div>
     </main>
 </template>

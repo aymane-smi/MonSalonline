@@ -1,5 +1,5 @@
 <template>
-    <form class="rounded-md p-7 bg-white h-[400px] overflow-y-scroll" >
+    <form class="rounded-md p-7 bg-white overflow-y-scroll" >
             <p class="text-[25px] font-bold w-full text-center">Register</p>
             <div class="flex flex-col gap-2 mt-3">
                 <label for="fname">First Name</label>
@@ -21,7 +21,7 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="p-3 border rounded-md" v-model="inputs.email"/>
             </div>
-            <button class="p-2 rounded-md bg-green-300 text-white mt-3">Register</button>
+            <button class="p-2 rounded-md bg-green-500 text-white mt-3">Register</button>
         </form>
 </template>
 <script lang="ts" setup>
@@ -35,6 +35,8 @@ const inputs:formInputs = reactive({
     phone: "",
     username: "",
 });
+
+
 
 
 </script>

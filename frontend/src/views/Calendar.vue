@@ -2,8 +2,9 @@
     <NavBar />
     <main class="w-screen mt-[64px] flex">
         <Sidebar @switch="switchScreen"/>
-        <span v-if="screen === 1">x</span>
-        <Settings v-if="screen === 2" class="w-[80vw] h-screen"/>
+        <DefaultClendar v-if="store.screen === 1" @times="showTimes"  class="w-[80vw] height overflow-y-scroll"/>
+        <Settings v-if="store.screen === 2" class="w-[80vw] height overflow-y-scroll"/>
+        <DayCalendar v-if="store.screen === 3" class="height overflow-y-scroll"/>
     </main>
 </template>
 <script setup lang="ts">
@@ -12,15 +13,25 @@
     import Sidebar from "../components/Sidebar.vue";
     import Settings from "../components/Settings.vue";
     import { pageAccess } from "../utils/authorization";
+    import DefaultClendar from "../components/DefaultClendar.vue";
+    import DayCalendar from "../components/DayCalendar.vue";
+    import {useCalendarStore} from "../store/CalendarStore";
 
     pageAccess();
 
+    const store = useCalendarStore();
+
     document.body.classList.remove("bg-edit");
     document.body.classList.remove("pt-3");
-
-    const screen:Ref<Number> = ref(1);
     const switchScreen = (option:number)=>{
-        screen.value = option;
+        //store.changeScreen(option);
+    }
+    const showTimes = ()=>{
+        //store.changeScreen(3);
     }
 </script>
-<style scoped></style>
+<style scoped>
+    .height{
+        max-height: calc(100vh - 65px);
+    }
+</style>

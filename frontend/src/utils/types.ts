@@ -5,3 +5,7 @@ export type formInputs = {
     phone: String,
     username: String,
 };
+
+export type storeState = {
+    screen: Number
+}
