@@ -4,7 +4,7 @@
         <Sidebar @switch="switchScreen"/>
         <DefaultClendar v-if="store.screen === 1" @times="showTimes"  class="w-[80vw] height overflow-y-scroll"/>
         <Settings v-if="store.screen === 2" class="w-[80vw] height overflow-y-scroll"/>
-        <DayCalendar v-if="store.screen === 3" class="height overflow-y-scroll"/>
+        <DayCalendar v-if="store.screen === 3" class="w-[80vw] height overflow-y-scroll"/>
     </main>
 </template>
 <script setup lang="ts">

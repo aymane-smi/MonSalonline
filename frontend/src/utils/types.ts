@@ -7,5 +7,6 @@ export type formInputs = {
 };
 
 export type storeState = {
-    screen: Number
+    screen: Number,
+    day: Number | null,
 }

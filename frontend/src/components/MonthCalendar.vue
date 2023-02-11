@@ -8,6 +8,7 @@
                 'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate(),
                 'text-gray-400 cursor-not-allowed': n < date.getDate(),
                 'hover:bg-gray-300 cursor-pointer': n > date.getDate(),
+                'bg-green-500 text-white shadow-lg': n === store.day,
                 }"
                 class="text-[12px] text-balck p-3 mt-2 text-center gap-20 flex justify-center items-center rounded-[50%] h-[6px] w-[6px]"
                 @click="handleClick"
@@ -29,8 +30,10 @@
     const days = new Date(date.getFullYear(), date.getMonth()+1, 0).getDate();
     let year = date.getFullYear();
 
-    const handleClick = (e)=>{
-        if(parseInt(e.target.textContent) >= date.getDate())
+    const handleClick = (e:any)=>{
+        if(parseInt(e.target.textContent) >= date.getDate()){
             store.changeScreen(3);
+            store.changeDay(parseInt(e.target.textContent));
+        }
     };
 </script>
