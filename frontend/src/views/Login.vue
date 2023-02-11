@@ -38,7 +38,7 @@
             if(data.status === 401)
                 alert("invalide token");
             else{
-                localStorage.setItem("token", token.value);
+                localStorage.setItem("token", token.value.valueOf());
                 route.push("/calendar");
             }
         }

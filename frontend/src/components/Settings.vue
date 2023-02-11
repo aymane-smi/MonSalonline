@@ -1,5 +1,5 @@
 <template>
-    <form class="rounded-md p-7 bg-white overflow-y-scroll" >
+    <form class="rounded-md p-7 bg-white overflow-y-scroll" @submit.prevent="handleSubmit">
             <p class="text-[25px] font-bold w-full text-center">Register</p>
             <div class="flex flex-col gap-2 mt-3">
                 <label for="fname">First Name</label>
@@ -8,10 +8,6 @@
             <div class="flex flex-col gap-2 mt-3">
                 <label for="lname">Last Name</label>
                 <input type="text" name="lname" id="lname" class="p-3 border rounded-md" v-model="inputs.lname"/>
-            </div>
-            <div class="flex flex-col gap-2 mt-3">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" class="p-3 border rounded-md" v-model="inputs.username"/>
             </div>
             <div class="flex flex-col gap-2 mt-3">
                 <label for="phone">Phone</label>
@@ -25,7 +21,7 @@
         </form>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, toRaw } from 'vue';
 import { formInputs } from "../utils/types";
 
 const inputs:formInputs = reactive({
@@ -33,10 +29,26 @@ const inputs:formInputs = reactive({
     lname: "",
     email: "",
     phone: "",
-    username: "",
+    id: "",
 });
 
+fetch("http://localhost:9000/api/client", {
+    method: 'POST',
+    body: JSON.stringify({"token": localStorage.getItem("token")}),
+}).then((res)=>res.json()).then((data)=>{
+    inputs.fname = data.fname;
+    inputs.lname = data.lname;
+    inputs.email = data.email;
+    inputs.phone = data.phone;
+    inputs.id = data.id;
+});
 
+const handleSubmit = async (e:Event)=>{
+    await fetch("http://localhost:9000/api/editClient", {
+        method: 'PUT',
+        body: JSON.stringify(toRaw(inputs)),
+    });
+};
 
 
 </script>

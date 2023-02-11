@@ -32,6 +32,18 @@
             ]);
         }
 
+        public function client(){
+            $this->header->init("POST");
+            $data = json_decode(file_get_contents("php://input"));
+            if($this->client->verifyToken($data->token)){
+                $this->header->status(200, "OK");
+                echo json_encode($this->client->getClient($data->token));
+            }else{
+                $this->header->status(401, "Unauthorized");
+                echo json_encode(["message"=> "invalid token"]);
+            }
+        }
+
         public function editToken(){
             $this->header->init("PUT");
             $data = json_decode(file_get_contents("php://input"));
@@ -57,12 +69,15 @@
         public function editClient(){
             $this->header->init("PUT");
             $data = json_decode(file_get_contents("php://input"));
-            $token = $this->utilities->randomStrGenerator();
-            $this->client->edit($data->fname, $data->lname, $data->email, $data->phone, $data->id);
-            $this->header->status(202, "Accepted");
-            echo json_encode([
-                "message" => "client updated",
-            ]);
+            if($this->client->verifyToken($data->token)){
+                $this->client->edit($data->fname, $data->lname, $data->email, $data->phone, $data->id);
+                $this->header->status(202, "Accepted");
+                echo json_encode([
+                    "message" => "client updated",
+                ]);
+            }else{
+                $this->header->status(401, "Unauthorized");
+            }
         }
 
         public function addAppointment(){

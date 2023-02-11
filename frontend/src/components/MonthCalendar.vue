@@ -5,10 +5,10 @@
         <div class="grid grid-cols-7 grid-rows-4 mt-2">
             <!-- v-bind:class <=> :class -->
             <button v-for="n in days" :class="{
-                'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate(),
-                'text-gray-400 cursor-not-allowed': n < date.getDate(),
-                'hover:bg-gray-300 cursor-pointer': n > date.getDate(),
-                'bg-green-500 text-white shadow-lg': n === store.day,
+                'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate() && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
+                'text-gray-400 cursor-not-allowed': n < date.getDate() || new Date(date.getFullYear(), date.getMonth(), n).getDay() === 0,
+                'hover:bg-gray-300 cursor-pointer': n > date.getDate() && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
+                'bg-green-500 text-white shadow-lg': n === store.day && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
                 }"
                 class="text-[12px] text-balck p-3 mt-2 text-center gap-20 flex justify-center items-center rounded-[50%] h-[6px] w-[6px]"
                 @click="handleClick"

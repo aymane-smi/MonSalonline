@@ -4,7 +4,7 @@ import { storeState } from "../utils/types";
 export const useCalendarStore = defineStore('calendarStore', {
     state : () : storeState =>({
         screen : 1,
-        day: null,
+        day: 0,
     }),
     actions: {
         changeScreen : function (option:Number){
