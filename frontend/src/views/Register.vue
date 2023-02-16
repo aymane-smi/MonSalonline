@@ -48,14 +48,14 @@ const inputs:formInputs = reactive({
 
 const handleSubmit = async(e:Event)=>{
     const formData = new FormData();
-    formData.append("fname", inputs.fname);
-    formData.append("lname", inputs.lname);
-    formData.append("email", inputs.email);
-    formData.append("phone", inputs.phone);
-    formData.append("username", inputs.username);
+    formData.append("fname", <string>inputs.fname);
+    formData.append("lname", <string>inputs.lname);
+    formData.append("email", <string>inputs.email);
+    formData.append("phone", <string>inputs.phone);
+    formData.append("username", <string>inputs.username);
     let body: { [k: string]: string; } = {};
     formData.forEach((v, k)=>{
-        body[k]=v;
+        body[k]=<string>v;
     });
     let res = await fetch("http://localhost:9000/api/createClient", {
         method: "POST",

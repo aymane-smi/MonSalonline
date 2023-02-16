@@ -10,10 +10,6 @@
                 <input type="text" name="lname" id="lname" class="p-3 border rounded-md" v-model="inputs.lname"/>
             </div>
             <div class="flex flex-col gap-2 mt-3">
-                <label for="username">Username</label>
-                <input type="text" name="username" id="username" class="p-3 border rounded-md" v-model="inputs.username"/>
-            </div>
-            <div class="flex flex-col gap-2 mt-3">
                 <label for="phone">Phone</label>
                 <input type="phone" name="phone" id="phone" class="p-3 border rounded-md" v-model="inputs.phone"/>
             </div>
@@ -28,16 +24,26 @@
 import { reactive } from 'vue';
 import { formInputs } from "../utils/types";
 
+
 const inputs:formInputs = reactive({
     fname: "",
     lname: "",
     email: "",
     phone: "",
-    username: "",
 });
 
-
-
+fetch("http://localhost:9000/api/getClient", {
+    method:"POST",
+    body: JSON.stringify({
+        "token": localStorage.getItem("token"),
+    })
+}).then((res)=>res.json()).then((data)=>{
+  inputs.lname = data.lname;
+  inputs.fname= data.fname;
+  inputs.username = data.username;
+  inputs.email = data.email;
+  inputs.phone = data.phone;
+});
 
 </script>
 <style scoped></style>

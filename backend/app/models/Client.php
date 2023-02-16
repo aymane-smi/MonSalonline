@@ -63,5 +63,10 @@
             else
                 return false;
         }
+
+        public function getClientByToken($token){
+            $this->db->query("SELECT * FROM client WHERE token = :token");
+            $this->db->bind(":token", $token);
+            return $this->db->single();
+        }
     }
-?>
