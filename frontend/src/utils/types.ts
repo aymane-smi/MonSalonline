@@ -3,7 +3,6 @@ export type formInputs = {
     lname: String,
     email: String,
     phone: String,
-    id: String,
 };
 
 export type storeState = {
