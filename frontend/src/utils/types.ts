@@ -3,9 +3,10 @@ export type formInputs = {
     lname: String,
     email: String,
     phone: String,
-    username: String,
+    id: String,
 };
 
 export type storeState = {
-    screen: Number
+    screen: Number,
+    day: Number,
 }

@@ -21,7 +21,7 @@
         </form>
 </template>
 <script lang="ts" setup>
-import { reactive } from 'vue';
+import { reactive, toRaw } from 'vue';
 import { formInputs } from "../utils/types";
 
 
@@ -40,7 +40,6 @@ fetch("http://localhost:9000/api/getClient", {
 }).then((res)=>res.json()).then((data)=>{
   inputs.lname = data.lname;
   inputs.fname= data.fname;
-  inputs.username = data.username;
   inputs.email = data.email;
   inputs.phone = data.phone;
 });
