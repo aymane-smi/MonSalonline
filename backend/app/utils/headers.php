@@ -1,14 +1,16 @@
 <?php
-    class headers{
-        public function init($method){
-            header('Access-Control-Allow-Origin: *');
-            header('Content-Type: application/json');
-            header('Access-Control-Allow-Methods: $method');
-            header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
-        }
-
-        public function status($code, $message){
-            header("HTTP/1.1 $code $message");
-        }
+class headers
+{
+    public function init($method)
+    {
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Methods: ' . $method);
+        header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+        header("Access-Control-Allow-Origin: *");
     }
-?>
+
+    public function status($code, $message)
+    {
+        header("HTTP/1.1 $code $message");
+    }
+}

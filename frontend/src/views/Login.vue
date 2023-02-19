@@ -30,16 +30,18 @@
     const handleSubmit = async(e:Event)=>{
         console.log(token);
         if(token.value){
-            const res = await fetch("http://localhost:9000/api/tokenAccess", {
-                method: "POST",
-                body: JSON.stringify({token: token.value})
-            });
-            const data = await res;
-            if(data.status === 401)
-                alert("invalide token");
-            else{
+            try{
+                const res = await fetch("http://localhost:9000/api/tokenAccess", {
+                    method: "POST",
+                    body: JSON.stringify({token: token.value})
+                });
+                const data = await res.json();
+                console.log(data);
                 localStorage.setItem("token", token.value.valueOf());
+                localStorage.setItem("id", data.client.id);
                 route.push("/calendar");
+            }catch(err){
+                alert("invalide token");
             }
         }
     };
