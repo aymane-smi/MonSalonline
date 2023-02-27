@@ -5,7 +5,8 @@
         <div class="grid grid-cols-7 grid-rows-4 mt-2">
             <!-- v-bind:class <=> :class -->
             <button v-for="n in days" :class="{
-                'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate() && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
+                'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate() ,
+                'cursor-not-allowed': new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
                 'text-gray-400 cursor-not-allowed': n < date.getDate() || new Date(date.getFullYear(), date.getMonth(), n).getDay() === 0,
                 'hover:bg-gray-300 cursor-pointer': n > date.getDate() && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
                 'bg-green-500 text-white shadow-lg': n === store.day && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
