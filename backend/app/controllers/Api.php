@@ -152,4 +152,22 @@ class Api extends Controller
             ]);
         }
     }
+
+    public function countByDate()
+    {
+        $this->header->init("POST");
+        $data = json_decode(file_get_contents("php://input"));
+        if (!$data->date) {
+            $this->header->status("401", "Unauthorized");
+            echo json_encode([
+                "message" => "please provide a date",
+            ]);
+        } else {
+            $result = $this->appointment->countByDate($data->date);
+            $this->header->status(200, "OK");
+            echo json_encode([
+                "appointments" => $result,
+            ]);
+        }
+    }
 }

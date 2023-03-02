@@ -71,4 +71,11 @@ class Appointment
         $this->db->bind(":date", $date);
         return $this->db->resultSet();
     }
+
+    public function countByDate($date)
+    {
+        $this->db->query("SELECT COUNT(*) as count FROM appointment WHERE date = :date");
+        $this->db->bind(":date", $date);
+        return $this->db->single();
+    }
 }

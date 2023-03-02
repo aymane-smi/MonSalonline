@@ -35,6 +35,7 @@ import { storeToRefs } from "pinia";
 import { faTheaterMasks } from "@fortawesome/free-solid-svg-icons";
 import { RESOLVE_COMPONENT } from "@vue/compiler-core";
 
+let counter = 0;
 const states = reactive<{
   hours: number;
   notEmpty: string[];
@@ -106,11 +107,11 @@ const handleAppointment = (e: { target: { childNodes: {
 };
 
 const hourChecker = (hour_: string) => {
-  if (states.notEmpty.some((e) => e.hour == hour_ && e.id_client != localStorage.getItem("id"))) {
+  if (states.notEmpty.some((e) => (e.hour == hour_ && e.id_client != localStorage.getItem("id")))) {
     return 1;
-  }else if (states.notEmpty.some((e) => e.hour != hour_) || states.notEmpty.length === 0) {
+  }else if (states.notEmpty.every((e) => e.hour != hour_) || states.notEmpty.length === 0) {
     return 2;
-  }else if (states.notEmpty.some((e) =>(e.hour as String) == hour_ && e.id_client == localStorage.getItem("id"))) {
+  }else if (states.notEmpty.some((e) => (e.hour == hour_ && e.id_client == localStorage.getItem("id")))) {
     return 3;
   }
 };
