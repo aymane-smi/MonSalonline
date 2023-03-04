@@ -28,6 +28,7 @@ class Client
         $this->db->bind(":phone", $phone);
         $this->db->bind(":token", $token);
         $this->db->execute();
+        return $this->db->lastId();
     }
 
     /**

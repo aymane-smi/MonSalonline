@@ -29,10 +29,12 @@ class Appointment
      * @param mixed $id
      * @return void
      */
-    public function deleteById($id)
+    public function deleteById($id, $date, $hour)
     {
-        $this->db->query("DELETE FROM appointment WHERE id = :id");
+        $this->db->query("DELETE FROM appointment WHERE id_client = :id AND date = :date AND hour = :hour");
         $this->db->bind(":id", $id);
+        $this->db->bind(":date", $date);
+        $this->db->bind(":hour", $hour);
         $this->db->execute();
     }
 
@@ -64,11 +66,13 @@ class Appointment
         return $this->db->resultSet();
     }
 
-    public function getByDate($date)
+    public function getByDate($month, $year, $day)
     {
 
-        $this->db->query("SELECT * FROM appointment WHERE date = :date");
-        $this->db->bind(":date", $date);
+        $this->db->query("SELECT * FROM appointment WHERE MONTH(date) = :month AND YEAR(date) = :year AND DAY(date) = :day");
+        $this->db->bind(":month", $month);
+        $this->db->bind(":year", $year);
+        $this->db->bind(":day", $day);
         return $this->db->resultSet();
     }
 

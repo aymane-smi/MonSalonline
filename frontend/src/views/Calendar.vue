@@ -41,7 +41,8 @@ const { day } = storeToRefs(useCalendarStore());
 const switchScreen = (option: number) => {
   store.changeScreen(option);
 };
-const showTimes = () => {
+const showTimes = (n:number) => {
+  store.changeDay(n);
   store.changeScreen(3);
 };
 </script>

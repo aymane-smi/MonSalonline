@@ -11,6 +11,10 @@ export const isSunday = (n:number)=>{
 }
 
 export const isSaturday = (n:number)=>{
-    console.log(initDate(n).getDay() === 6, initDate(n).toDateString());
     return initDate(n).getDay() === 6;
+}
+
+export const getDate = (n:string)=>{
+    const tmp = getDateObj();
+    return `${tmp.getFullYear()}-${tmp.getMonth()+1}-${n}`;
 }

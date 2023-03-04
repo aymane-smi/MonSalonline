@@ -28,11 +28,12 @@ class Api extends Controller
         $this->header->init("POST");
         $data = json_decode(file_get_contents("php://input"));
         $token = $this->utilities->randomStrGenerator();
-        $this->client->add($data->fname, $data->lname, $data->email, $data->phone, $token);
+        $id = $this->client->add($data->fname, $data->lname, $data->email, $data->phone, $token);
         $this->header->status(201, "Created");
         echo json_encode([
             "message" => "client created",
             "token" => $token,
+            "id" => $id,
         ]);
     }
 
@@ -114,14 +115,16 @@ class Api extends Controller
         ]);
     }
 
-    public function delete($id)
+    public function deleteAppointment()
     {
         $this->header->init("DELETE");
-        $this->appointment->deleteById($id);
-        $this->header->status(200, "OK");
-        echo json_encode([
-            "message" => "appointment with id:$id was deleted!",
-        ]);
+            $data = json_decode(file_get_contents("php://input"));
+            $this->appointment->deleteById($data->client, $data->date, $data->hour);
+            $this->header->status(200, "OK");
+            echo json_encode([
+                "message" => "appointment was deleted!",
+            ]);
+
     }
 
     public function all($id)
@@ -139,13 +142,13 @@ class Api extends Controller
     {
         $this->header->init("POST");
         $data = json_decode(file_get_contents("php://input"));
-        if (!$data->date) {
+        if (!$data) {
             $this->header->status("401", "Unauthorized");
             echo json_encode([
                 "message" => "please provide a date",
             ]);
         } else {
-            $result = $this->appointment->getByDate($data->date);
+            $result = $this->appointment->getByDate($data->month, $data->year, $data->day);
             $this->header->status(200, "OK");
             echo json_encode([
                 "appointments" => $result,

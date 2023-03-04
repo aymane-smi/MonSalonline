@@ -21,5 +21,4 @@ let day:Ref<number> = ref(0);
         }).then((res)=>res.json()).then((data)=>{
             day = data.appointments.count;
         });
-    console.log(day);
 </script>
