@@ -8,8 +8,9 @@
       <font-awesome-icon icon="fa-solid fa-circle-xmark" /> close
     </button>
     </div>
+    <!-- morning and sunday-->
     <div
-      v-for="n in states.hours"
+      v-for="n in 3"
       class="w-full h-full border p-7 flex justify-between items-center"
       @dblclick="handleAppointment"
     >
@@ -35,6 +36,65 @@
       </div>
       <span></span>
     </div>
+    <!-- from monday to sunday except friday-->
+    <div
+      v-if="states.hours == 6"
+      v-for="n in states.hours"
+      class="w-full h-full border p-7 flex justify-between items-center"
+      @dblclick="handleAppointment"
+    >
+      <span>{{ 14 + n - 1 }}-{{ 14 + n }}</span>
+      <div
+        v-if="hourChecker(`${14 + n - 1}-${14 + n}`) == 2"
+        class="p-2 text-white bg-green-500 rounded-md"
+      >
+        free appointment
+      </div>
+      <div
+        v-if="hourChecker(`${14 + n - 1}-${14 + n}`) == 1"
+        class="p-2 text-white bg-red-500 rounded-md"
+      >
+        already taken
+      </div>
+      <div
+        v-if="hourChecker(`${14 + n - 1}-${14 + n}`) == 3"
+        class="p-2 text-white bg-blue-500 rounded-md"
+        @contextmenu="handleAlert"
+      >
+        taken by you
+      </div>
+      <span></span>
+    </div>
+    <!-- friday -->
+    <div
+      v-if="states.hours == 4"
+      v-for="n in states.hours"
+      class="w-full h-full border p-7 flex justify-between items-center"
+      @dblclick="handleAppointment"
+    >
+      <span>{{ 16 + n - 1 }}-{{ 16 + n }}</span>
+      <div
+        v-if="hourChecker(`${16 + n - 1}-${16 + n}`) == 2"
+        class="p-2 text-white bg-green-500 rounded-md"
+      >
+        free appointment
+      </div>
+      <div
+        v-if="hourChecker(`${16 + n - 1}-${16 + n}`) == 1"
+        class="p-2 text-white bg-red-500 rounded-md"
+      >
+        already taken
+      </div>
+      <div
+        v-if="hourChecker(`${16 + n - 1}-${16 + n}`) == 3"
+        class="p-2 text-white bg-blue-500 rounded-md"
+        @contextmenu="handleAlert"
+      >
+        taken by you
+      </div>
+      <span></span>
+    </div>
+
   </div>
 </template>
 <script lang="ts" setup>
@@ -91,14 +151,27 @@ let res = await fetch("http://localhost:9000/api/getAppointmentByDate", {
 let data = await res.json();
 states.notEmpty = await data.appointments;
 
-if (
+if(
   new Date(
     dateInstance.getFullYear(),
     dateInstance.getMonth(),
     day.value.valueOf()
-  ).getDay() === 6
+  ).getDay() === 5
 )
   states.hours = 4;
+
+else if(
+  new Date(
+    dateInstance.getFullYear(),
+    dateInstance.getMonth(),
+    day.value.valueOf()
+  ).getDay() !== 5 && new Date(
+    dateInstance.getFullYear(),
+    dateInstance.getMonth(),
+    day.value.valueOf()
+  ).getDay() !== 0
+)
+  states.hours = 6
 
 /*
     handlers

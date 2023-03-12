@@ -7,9 +7,12 @@
             <button v-for="n in days" :class="{
                 'bg-[#1a73e8] text-white shadow-lg cursor-pointer': n===date.getDate() ,
                 'cursor-not-allowed': new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
-                'text-gray-400 cursor-not-allowed': n < date.getDate() || new Date(date.getFullYear(), date.getMonth(), n).getDay() === 0,
-                'hover:bg-gray-300 cursor-pointer': n > date.getDate() && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
-                'bg-green-500 text-white shadow-lg': n === store.day && new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0,
+                //new Date(date.getFullYear(), date.getMonth(), n).getDay() === 0
+                'text-gray-400 cursor-not-allowed': n < date.getDate(),
+                //&& new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0
+                'hover:bg-gray-300 cursor-pointer': n > date.getDate(),
+                //&& new Date(date.getFullYear(), date.getMonth(), n).getDay() !== 0
+                'bg-green-500 text-white shadow-lg': n === store.day,
                 }"
                 class="text-[12px] text-balck p-3 mt-2 text-center gap-20 flex justify-center items-center rounded-[50%] h-[6px] w-[6px]"
                 @click="handleClick"

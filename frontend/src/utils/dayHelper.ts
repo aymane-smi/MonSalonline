@@ -18,3 +18,7 @@ export const getDate = (n:string)=>{
     const tmp = getDateObj();
     return `${tmp.getFullYear()}-${tmp.getMonth()+1}-${n}`;
 }
+
+export const isFriday = (n:number)=>{
+    return initDate(n).getDay() === 5;
+}
